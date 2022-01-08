@@ -19,7 +19,6 @@ const Main = (props) => {
       .then((result) => {
         setDonors(result);
         setLoading(false);
-        console.log(window.innerWidth);
         setUser(sessionStorage.getItem("user"));
       });
   }, []);
