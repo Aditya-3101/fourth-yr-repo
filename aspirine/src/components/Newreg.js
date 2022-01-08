@@ -8,7 +8,6 @@ import { Button } from "@material-ui/core";
 import { Radio } from "@material-ui/core";
 import { RadioGroup } from "@material-ui/core";
 import { FormControlLabel } from "@material-ui/core";
-import { Container } from "@material-ui/core";
 import Headings from "./headings";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
@@ -102,6 +101,15 @@ const NewReg = () => {
           .then((result) => {
             console.log(result);
             alert(`Data inserted for ID${oid}.`);
+            setName("");
+            setMail("");
+            setDoo("");
+            setUnits("");
+            setAddress("");
+            setPhone("");
+            setBgrp("");
+            setCity("");
+            settransType(null);
             setPopup(!popup);
           })
           .catch((err) => console.log(err));

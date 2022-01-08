@@ -561,7 +561,7 @@ color:rgb(255,255,255) !important
   margin-left:auto;
   margin-right:auto;
   overflow-x: hidden;
-  overflow-y:scroll;
+  overflow-y:auto;
 }
 
 .txtArea{
@@ -589,6 +589,10 @@ color:rgb(255,255,255) !important
   display: flex;
   justify-content: space-evenly;
   align-items:center;
+}
+
+.backToTable{
+  margin:.9rem 0 .9rem 0;
 }
 
 @media (min-width:0px) and (max-width:1024px) {

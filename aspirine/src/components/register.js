@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Card from "@material-ui/core/Card";
 import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
+import { FormControl } from "@material-ui/core";
 import { Radio } from "@material-ui/core";
 import { RadioGroup } from "@material-ui/core";
 import { FormControlLabel } from "@material-ui/core";
@@ -58,12 +59,11 @@ const Register = () => {
     e.preventDefault();
     const re = /^[0-9\b]+$/;
 
-    // if value is not blank, then test the regex
-
     if (
       (name !== re) &
       (hemo < 20) &
-      (phone < 10) &
+      (age > 18) &
+      (phone.length > 9) &
       (hepa === "N") &
       (jaun === "N")
     ) {
@@ -73,13 +73,13 @@ const Register = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          Name: `${name}`,
+          Name: name,
           Age: age,
           Gender: gender,
           Phone_no: phone,
           Blood_grp: bgrp,
           Weight_in_kg: weight,
-          Hemoglobin_level: `${hemo}`,
+          Hemoglobin_level: hemo,
           Diagonse_Hepatities: hepa,
           Diagonse_jaundice: jaun,
           DOB: dateFormat(dob, "yyyy-mm-dd"),
@@ -89,6 +89,16 @@ const Register = () => {
         .then((result) => {
           console.log(result);
           alert("Congratulations, you are successfully registerd as donor");
+          setName("");
+          setAge("");
+          setGender("");
+          setDob("");
+          setPhone("");
+          setBgrp("");
+          setWeight("");
+          setHemo("");
+          setHepa("");
+          setJaun("");
         })
         .catch((err) => console.log(err));
     } else {
@@ -117,28 +127,32 @@ const Register = () => {
               color="secondary"
               variant="outlined"
               id="outlined-basic"
-              required
+              NotchedOutline={false}
+              required={true}
               label="Name"
+              value={name}
               className="basic-grid-item-1"
               onChange={(e) => setName(e.target.value)}
             />
             <TextField
               color="secondary"
               variant="outlined"
-              id="outlined-number"
-              type="number"
-              required
+              id="outlined-basic"
+              required={true}
               label="Age"
+              type="number"
+              value={age}
               className="basic-grid-item-2"
-              onChange={(e) => setAge(e.type.value)}
+              onChange={(e) => setAge(e.target.value)}
             />
             <TextField
               color="secondary"
               variant="outlined"
               id="outlined-number"
               type="number"
-              required="Age"
+              required={true}
               label="Phone No"
+              value={phone}
               className="basic-grid-item-3"
               onChange={(e) => setPhone(e.target.value)}
             />
@@ -147,9 +161,10 @@ const Register = () => {
               variant="outlined"
               id="outlined-basic"
               type="date"
-              required
+              required={true}
               label="Date of Birth"
               className="basic-grid-item-4"
+              value={dob}
               InputLabelProps={{ shrink: "false" }}
               onChange={(e) => setDob(e.target.value)}
             />
@@ -160,7 +175,7 @@ const Register = () => {
               label="Gender"
               value={gender}
               onChange={(e) => setGender(e.target.value)}
-              required
+              required={true}
               variant="outlined"
             >
               <MenuItem value="M">Male</MenuItem>
@@ -175,9 +190,10 @@ const Register = () => {
               color="secondary"
               variant="outlined"
               id="outlined-basic"
-              required
+              required={true}
               label="Weight"
               type="number"
+              value={weight}
               className="basic-grid-item-1"
               onChange={(e) => setWeight(e.target.value)}
             />
@@ -188,7 +204,7 @@ const Register = () => {
               label="Blood group"
               value={bgrp}
               onChange={(e) => setBgrp(e.target.value)}
-              required
+              required={true}
               variant="outlined"
             >
               {grps.map((para) => {
@@ -205,7 +221,7 @@ const Register = () => {
               variant="outlined"
               label="Hemoglobin level"
               value={hemo}
-              setHemo={(e) => e.target.value}
+              onChange={(e) => setHemo(e.target.value)}
             />
             <TextField
               color="secondary"
@@ -214,7 +230,7 @@ const Register = () => {
               label="Have you Diagonsed with Hepatities before?"
               value={hepa}
               onChange={(e) => setHepa(e.target.value)}
-              required
+              required={true}
               variant="outlined"
             >
               <MenuItem value="Y">Yes</MenuItem>
@@ -227,7 +243,7 @@ const Register = () => {
               label="Have you Diagonsed with jaundice before"
               value={jaun}
               onChange={(e) => setJaun(e.target.value)}
-              required
+              required={true}
               variant="outlined"
             >
               <MenuItem value="Y">Yes</MenuItem>

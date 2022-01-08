@@ -19,8 +19,13 @@ const Tables = (props) => {
             {props.data.units}
           </TableCell>
           <TableCell align="center" style={{ color: "white" }}>
-            {props.data.bill}
-          </TableCell>{" "}
+            {`Rs.${props.data.bill
+              .toFixed(2)
+              .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}`}
+          </TableCell>
+          <TableCell align="center" style={{ color: "white" }}>
+            {props.data.Status}
+          </TableCell>
         </>
       ) : (
         ""

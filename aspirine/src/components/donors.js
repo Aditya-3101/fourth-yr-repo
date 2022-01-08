@@ -1,27 +1,75 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Headings from "./headings";
-import { InputAdornment, TextField } from "@material-ui/core";
+import { InputAdornment, TextField, Button } from "@material-ui/core";
 import { GoSearch } from "react-icons/go";
 import { RiSendPlaneLine } from "react-icons/ri";
+import { MdRefresh } from "react-icons/md";
+import { IoMdAdd } from "react-icons/io";
 
 const Donors = () => {
-  const history = useHistory();
   const [donors, setDonors] = useState([]);
+  const [table, setTable] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [visible, setVisible] = useState(false);
   const [search, setSearch] = useState("");
+  const [bgrp, setBgrp] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:4000/api/donors")
       .then((res) => res.json())
       .then((result) => {
         setDonors(result);
+        setTable(result);
         setLoading(false);
+        setVisible(false);
+        setSearch("");
+        setBgrp("");
       });
   }, []);
 
-  const submit = () => {};
+  const submit = () => {
+    if (bgrp != null) {
+      setBgrp("");
+    }
+
+    fetch(`http://localhost:4000/api/donors/search?name=${search}`)
+      .then((res) => res.json())
+      .then((result) => {
+        setDonors(result);
+        setLoading(false);
+        setVisible(true);
+      });
+  };
+
+  const checkBgrp = () => {
+    let grp;
+
+    if (String(bgrp).includes("+")) {
+      grp = String(bgrp).replace("+", "positive");
+    } else {
+      grp = String(bgrp).replace("-", "negative");
+    }
+
+    if (search !== null) {
+      setSearch("");
+    }
+
+    fetch(`http://localhost:4000/api/donors/sort?grp=${grp}`)
+      .then((res) => res.json())
+      .then((result) => {
+        setDonors(result);
+        setVisible(true);
+      });
+  };
+
+  const recover = () => {
+    setSearch("");
+    setBgrp("");
+    setVisible(false);
+    setDonors(table);
+  };
 
   if (loading) {
     return (
@@ -58,7 +106,7 @@ const Donors = () => {
         <TextField
           variant="outlined"
           id="outlined-basic"
-          label="Search"
+          label="Search By Name"
           color="secondary"
           value={search}
           onChange={(e) => {
@@ -75,15 +123,57 @@ const Donors = () => {
             ),
             endAdornment: (
               <InputAdornment position="end">
-                <RiSendPlaneLine
-                  className="sendIcon"
-                  style={{ color: "#f9f9f9", zoom: "115%" }}
-                  onClick={submit}
-                />
+                {" "}
+                {search ? (
+                  <RiSendPlaneLine
+                    className="sendIcon"
+                    style={{ color: "#f9f9f9", zoom: "115%" }}
+                    onClick={submit}
+                  />
+                ) : null}
               </InputAdornment>
             ),
           }}
         />
+        <TextField
+          variant="outlined"
+          id="outlined-basic"
+          label="Search by Blood Group"
+          color="secondary"
+          value={bgrp}
+          onChange={(e) => {
+            setBgrp(e.target.value);
+          }}
+          style={{
+            borderBottom: "1px solid gray",
+          }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <GoSearch style={{ color: "#f9f9f9" }} />
+              </InputAdornment>
+            ),
+            endAdornment: (
+              <InputAdornment position="end">
+                {" "}
+                {bgrp ? (
+                  <RiSendPlaneLine
+                    className="sendIcon"
+                    style={{ color: "#f9f9f9", zoom: "115%" }}
+                    onClick={checkBgrp}
+                  />
+                ) : null}
+              </InputAdornment>
+            ),
+          }}
+        />
+      </div>
+      <div className="backToTable">
+        {visible ? (
+          <Button variant="outlined" color="secondary" onClick={recover}>
+            <MdRefresh style={{ color: "white", zoom: "120%" }} />
+          </Button>
+        ) : null}
       </div>
       <main className="tables">
         <table className="tableBody">
@@ -168,6 +258,13 @@ const Donors = () => {
           })}
         </table>
       </main>
+      <div className="buttons">
+        <Link to="/api/main/donors/register">
+          <abbr title="Register new Donor">
+            <IoMdAdd className="addIcon" />
+          </abbr>
+        </Link>
+      </div>
     </main>
   );
 };

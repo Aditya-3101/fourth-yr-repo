@@ -154,15 +154,33 @@ const Main = (props) => {
           </li>
           <li>
             <Typography variant="h6" color="secondary">
-              <Link
-                to="/api/main/sendMail"
-                style={{
-                  color: "White",
-                  textDecoration: "none",
-                }}
+              <div
+                style={{ color: "#f9f9f9" }}
+                onMouseEnter={(e) => setDrop(!drop)}
+                className="dropdown"
               >
-                Configure E-mails
-              </Link>
+                Configure E-mail
+                <IoMdArrowDropdown
+                  className="downIcon"
+                  style={{
+                    verticalAlign: "middle",
+                  }}
+                />
+                <div className="dropdown-content">
+                  <Link
+                    className="regDon"
+                    onClick={window.open(
+                      "https://mail.google.com/mail/u/2/#inbox",
+                      "_blank"
+                    )}
+                  >
+                    Check Inbox
+                  </Link>
+                  <Link className="regHos" to="/api/main/sendMail">
+                    Write Mail
+                  </Link>
+                </div>
+              </div>
             </Typography>
           </li>
         </ul>
@@ -178,12 +196,22 @@ const Main = (props) => {
           <Card className="sidebar">
             <ul>
               <li
+                className="sideBarAttr"
                 style={{
                   color: "#f9f9f9",
                   fontFamily: "Arial",
                 }}
               >
-                Donors
+                <Link
+                  style={{
+                    textDecoration: "none",
+                    color: "#f9f9f9",
+                    fontFamily: "Arial",
+                  }}
+                  to="/api/main/donors"
+                >
+                  Donors
+                </Link>
               </li>
               <li className="sideBarAttr">
                 <Link

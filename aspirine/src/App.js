@@ -10,6 +10,7 @@ import Orders from "./components/Borders";
 import Eligible from "./components/eligibility";
 import Buyer from "./components/buyer";
 import Donors from "./components/donors";
+import Search from "./components/search";
 import "./App.css";
 
 const App = () => {
