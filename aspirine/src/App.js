@@ -1,16 +1,16 @@
-import Logins from "./components/Logins";
+import Logins from "./components/auth/Logins";
 import React from "react";
-import Main from "./components/Main";
+import Main from "./components/home/Main";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Tests from "./components/Test_Results";
-import Register from "./components/register";
-import NewReg from "./components/Newreg";
-import Mail from "./components/mail";
-import Orders from "./components/Borders";
-import Eligible from "./components/eligibility";
-import Buyer from "./components/buyer";
-import Donors from "./components/donors";
-import Search from "./components/search";
+import Tests from "./components/tests/Test_Results";
+import Register from "./components/regis/register";
+import NewReg from "./components/regis/Newreg";
+import Mail from "./components/mail/mail";
+import Orders from "./components/orders/Borders";
+import Eligible from "./components/eligibility/eligibility";
+import Buyer from "./components/regis/buyer";
+import Donors from "./components/donors/donors.js";
+import Drecords from "./components/records/donorRec";
 import "./App.css";
 
 const App = () => {
@@ -31,6 +31,7 @@ const App = () => {
           <Route path="/api/main/sendMail" exact component={Mail} />
           <Route path="/api/main/eligibility" exact component={Eligible} />
           <Route path="/api/main/register/buyer/new" exact component={Buyer} />
+          <Route path="/api/main/donors/records" exact component={Drecords} />
         </Switch>
       </Router>
     </>

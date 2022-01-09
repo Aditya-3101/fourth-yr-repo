@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import Headings from "./headings";
+import Headings from "../header/headings.js";
 import Area from "./textArea";
 import { ButtonGroup } from "@material-ui/core";
 import { Button } from "@material-ui/core";

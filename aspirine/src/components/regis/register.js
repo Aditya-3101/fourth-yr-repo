@@ -10,7 +10,7 @@ import { RadioGroup } from "@material-ui/core";
 import { FormControlLabel } from "@material-ui/core";
 import { FormLabel } from "@material-ui/core";
 import { MenuItem } from "@material-ui/core";
-import Headings from "./headings";
+import Headings from "../header/headings";
 
 const Register = () => {
   const [name, setName] = useState("");

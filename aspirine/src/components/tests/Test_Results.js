@@ -1,5 +1,5 @@
 import React from "react";
-import Tables from "./Table";
+import Tables from "../table/Table";
 import { Table } from "@material-ui/core";
 import { TableContainer, TextField } from "@material-ui/core";
 import { TableHead } from "@material-ui/core";
@@ -10,7 +10,7 @@ import { InputAdornment, Button } from "@material-ui/core";
 import { MdRefresh } from "react-icons/md";
 import { RiSendPlaneLine } from "react-icons/ri";
 import { GoSearch } from "react-icons/go";
-import Headings from "./headings";
+import Headings from "../header/headings";
 
 const Tests = () => {
   const [loading, setLoading] = React.useState(true);

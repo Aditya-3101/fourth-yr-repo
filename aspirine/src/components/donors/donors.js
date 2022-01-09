@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Headings from "./headings";
+import Headings from "../header/headings";
 import { InputAdornment, TextField, Button } from "@material-ui/core";
 import { GoSearch } from "react-icons/go";
 import { RiSendPlaneLine } from "react-icons/ri";

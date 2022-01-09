@@ -1,74 +1,100 @@
 import React from "react";
-import Tables from "./Table";
-import Headings from "./headings";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+import { TextField, Button, InputAdornment } from "@material-ui/core";
+import { TableContainer } from "@material-ui/core";
 import { TableHead } from "@material-ui/core";
 import { TableRow } from "@material-ui/core";
 import { TableCell } from "@material-ui/core";
-import { Paper } from "@material-ui/core";
 import { Table } from "@material-ui/core";
-import { TextField, Button, InputAdornment } from "@material-ui/core";
-import { TableContainer } from "@material-ui/core";
+import { Paper } from "@material-ui/core";
 import { GoSearch } from "react-icons/go";
 import { RiSendPlaneLine } from "react-icons/ri";
 import { MdRefresh } from "react-icons/md";
+import Headings from "../header/headings";
+import Tables from "../table/Table";
 
-const Orders = () => {
-  const [data, setData] = useState([]);
-  const [table, setTable] = useState([]);
-  const [loading, setLoading] = useState(true);
+const Drecords = () => {
+  const [records, setRecords] = useState([]);
+  const [copy, setCopy] = useState([]);
+  const [Loading, setLoading] = useState(true);
   const [visible, setVisible] = useState(false);
   const [search, setSearch] = useState("");
-  const [oid, setoid] = useState("");
+  const [bgrp, setBgrp] = useState("");
+  const [contact, setContact] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/orders")
+    fetch("http://localhost:4000/api/donors/records")
       .then((res) => res.json())
       .then((result) => {
-        setData(result);
+        setRecords(result);
+        setCopy(result);
         setLoading(false);
-        setVisible(false);
-        setTable(result);
-        setSearch("");
-        setoid("");
       });
   }, []);
 
   const submit = () => {
-    if (oid != null) {
-      setoid("");
+    if (bgrp != null) {
+      setBgrp("");
+    }
+    if (contact != null) {
+      setContact("");
     }
 
-    fetch(`http://localhost:4000/api/orders/search?name=${search}`)
+    fetch(`http://localhost:4000/api/donors/records/search?name=${search}`)
       .then((res) => res.json())
       .then((result) => {
-        setData(result);
+        setRecords(result);
+        setLoading(false);
+        setVisible(true);
+      });
+  };
+
+  const checkContact = () => {
+    fetch(`http://localhost:4000/api/donors/records/contact?contact=${contact}`)
+      .then((res) => res.json())
+      .then((result) => {
+        setRecords(result);
         setLoading(false);
         setVisible(true);
       });
   };
 
   const checkBgrp = () => {
+    let grps;
+    console.log(bgrp);
+
+    if (String(bgrp).includes("+")) {
+      grps = String(bgrp).replace("+", "positive");
+    } else {
+      grps = String(bgrp).replace("-", "negative");
+    }
+
     if (search !== null) {
       setSearch("");
     }
+    if (contact !== null) {
+      setContact("");
+    }
 
-    fetch(`http://localhost:4000/api/orders/search/id?id=${oid}`)
+    fetch(`http://localhost:4000/api/donors/records/sort?grp=${grps}`)
       .then((res) => res.json())
       .then((result) => {
-        setData(result);
+        console.log(result);
+        setRecords(result);
         setVisible(true);
       });
   };
 
   const recover = () => {
     setSearch("");
-    setoid("");
+    setBgrp("");
+    setContact("");
     setVisible(false);
-    setData(table);
+    setRecords(copy);
   };
 
-  if (loading) {
+  if (Loading) {
     return (
       <div
         style={{
@@ -90,7 +116,7 @@ const Orders = () => {
   return (
     <article style={{ background: "rgb(20,20,20)" }}>
       <div className="heading" style={{ background: "rgb(20,20,20)" }}>
-        <Headings heading="Orders" />
+        <Headings heading="Donor Records" />
       </div>
       <div className="queries" style={{ background: "rgb(20,20,20)" }}>
         <TextField
@@ -128,11 +154,11 @@ const Orders = () => {
         <TextField
           variant="outlined"
           id="outlined-basic"
-          label="Search by Order ID"
+          label="Search by Phone Number"
           color="secondary"
-          value={oid}
+          value={contact}
           onChange={(e) => {
-            setoid(e.target.value);
+            setContact(e.target.value);
           }}
           style={{
             borderBottom: "1px solid gray",
@@ -146,7 +172,39 @@ const Orders = () => {
             endAdornment: (
               <InputAdornment position="end">
                 {" "}
-                {oid ? (
+                {contact ? (
+                  <RiSendPlaneLine
+                    className="sendIcon"
+                    style={{ color: "#f9f9f9", zoom: "115%" }}
+                    onClick={checkContact}
+                  />
+                ) : null}
+              </InputAdornment>
+            ),
+          }}
+        />
+        <TextField
+          variant="outlined"
+          id="outlined-basic"
+          label="Search by Blood Group"
+          color="secondary"
+          value={bgrp}
+          onChange={(e) => {
+            setBgrp(e.target.value);
+          }}
+          style={{
+            borderBottom: "1px solid gray",
+          }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <GoSearch style={{ color: "#f9f9f9" }} />
+              </InputAdornment>
+            ),
+            endAdornment: (
+              <InputAdornment position="end">
+                {" "}
+                {bgrp ? (
                   <RiSendPlaneLine
                     className="sendIcon"
                     style={{ color: "#f9f9f9", zoom: "115%" }}
@@ -186,26 +244,35 @@ const Orders = () => {
           <TableHead>
             <TableRow>
               <TableCell align="center" style={{ color: "white" }}>
-                OID
+                Id
               </TableCell>
               <TableCell align="center" style={{ color: "white" }}>
-                Hospital Name
+                Name
               </TableCell>
               <TableCell align="center" style={{ color: "white" }}>
-                Fully packed RBC
+                Gender
               </TableCell>
               <TableCell align="center" style={{ color: "white" }}>
-                units
+                Age
               </TableCell>
               <TableCell align="center" style={{ color: "white" }}>
-                bill
+                Weight
               </TableCell>
               <TableCell align="center" style={{ color: "white" }}>
-                status
+                Phone
+              </TableCell>
+              <TableCell align="center" style={{ color: "white" }}>
+                Blood Group
+              </TableCell>
+              <TableCell align="center" style={{ color: "white" }}>
+                Hemoglobin Level
+              </TableCell>
+              <TableCell align="center" style={{ color: "white" }}>
+                Date
               </TableCell>
             </TableRow>
           </TableHead>
-          {data.map((para, index) => {
+          {records.map((para, index) => {
             return (
               <TableRow>
                 <Tables key={index} data={para} />;
@@ -218,4 +285,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default Drecords;

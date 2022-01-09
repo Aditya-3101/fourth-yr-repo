@@ -67,6 +67,40 @@ const Tables = (props) => {
       ) : (
         ""
       )}
+      {props.data.Id ? (
+        <>
+          <TableCell align="center" style={{ color: "white" }}>
+            {props.data.Id}
+          </TableCell>
+          <TableCell align="center" style={{ color: "white" }}>
+            {props.data.Name}
+          </TableCell>
+          <TableCell align="center" style={{ color: "white" }}>
+            {props.data.Gender}
+          </TableCell>
+          <TableCell
+            align="center"
+            style={{ color: "white" }}
+          >{`${props.data.Age}`}</TableCell>
+          <TableCell align="center" style={{ color: "white" }}>
+            {`${props.data.weight}Kg`}
+          </TableCell>
+          <TableCell align="center" style={{ color: "white" }}>
+            {props.data.phone}
+          </TableCell>
+          <TableCell align="center" style={{ color: "white" }}>
+            {props.data.Bgrp}
+          </TableCell>
+          <TableCell align="center" style={{ color: "white" }}>
+            {`${props.data.hemo_level}g/dl`}
+          </TableCell>
+          <TableCell align="center" style={{ color: "white" }}>
+            {String(props.data.date).slice(0, 10)}
+          </TableCell>
+        </>
+      ) : (
+        ""
+      )}
     </>
   );
 };

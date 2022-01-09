@@ -166,15 +166,7 @@ const Main = (props) => {
                   }}
                 />
                 <div className="dropdown-content">
-                  <Link
-                    className="regDon"
-                    onClick={window.open(
-                      "https://mail.google.com/mail/u/2/#inbox",
-                      "_blank"
-                    )}
-                  >
-                    Check Inbox
-                  </Link>
+                  <div className="regDon">Check Inbox</div>
                   <Link className="regHos" to="/api/main/sendMail">
                     Write Mail
                   </Link>

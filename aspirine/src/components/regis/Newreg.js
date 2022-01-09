@@ -8,7 +8,7 @@ import { Button } from "@material-ui/core";
 import { Radio } from "@material-ui/core";
 import { RadioGroup } from "@material-ui/core";
 import { FormControlLabel } from "@material-ui/core";
-import Headings from "./headings";
+import Headings from "../header/headings";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
 const NewReg = () => {
