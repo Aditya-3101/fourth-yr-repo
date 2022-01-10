@@ -14,7 +14,7 @@ import { MdRefresh } from "react-icons/md";
 import Headings from "../header/headings";
 import Tables from "../table/Table";
 
-const Drecords = () => {
+const Brecords = () => {
   const [records, setRecords] = useState([]);
   const [copy, setCopy] = useState([]);
   const [Loading, setLoading] = useState(true);
@@ -24,7 +24,7 @@ const Drecords = () => {
   const [contact, setContact] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/donors/records")
+    fetch("http://localhost:4000/api/buyers/records")
       .then((res) => res.json())
       .then((result) => {
         setRecords(result);
@@ -41,7 +41,7 @@ const Drecords = () => {
       setContact("");
     }
 
-    fetch(`http://localhost:4000/api/donors/records/search?name=${search}`)
+    fetch(`http://localhost:4000/api/buyers/records/search?name=${search}`)
       .then((res) => res.json())
       .then((result) => {
         setRecords(result);
@@ -51,7 +51,7 @@ const Drecords = () => {
   };
 
   const checkContact = () => {
-    fetch(`http://localhost:4000/api/donors/records/contact?contact=${contact}`)
+    fetch(`http://localhost:4000/api/buyers/records/contact?contact=${contact}`)
       .then((res) => res.json())
       .then((result) => {
         setRecords(result);
@@ -77,7 +77,7 @@ const Drecords = () => {
       setContact("");
     }
 
-    fetch(`http://localhost:4000/api/donors/records/sort?grp=${grps}`)
+    fetch(`http://localhost:4000/api/buyers/records/sort?grp=${grps}`)
       .then((res) => res.json())
       .then((result) => {
         console.log(result);
@@ -116,7 +116,7 @@ const Drecords = () => {
   return (
     <article style={{ background: "rgb(20,20,20)" }}>
       <div className="heading" style={{ background: "rgb(20,20,20)" }}>
-        <Headings heading="Donor Records" />
+        <Headings heading="Buyers Records" />
       </div>
       <div className="queries" style={{ background: "rgb(20,20,20)" }}>
         <TextField
@@ -243,7 +243,7 @@ const Drecords = () => {
           <TableHead>
             <TableRow>
               <TableCell align="center" style={{ color: "white" }}>
-                Id
+                BId
               </TableCell>
               <TableCell align="center" style={{ color: "white" }}>
                 Name
@@ -252,22 +252,30 @@ const Drecords = () => {
                 Gender
               </TableCell>
               <TableCell align="center" style={{ color: "white" }}>
-                Age
+                Phone No
               </TableCell>
               <TableCell align="center" style={{ color: "white" }}>
-                Weight
+                Date
               </TableCell>
               <TableCell align="center" style={{ color: "white" }}>
-                Phone
+                units
               </TableCell>
               <TableCell align="center" style={{ color: "white" }}>
                 Blood Group
               </TableCell>
               <TableCell align="center" style={{ color: "white" }}>
-                Hemoglobin Level
+                Transaction Type
               </TableCell>
               <TableCell align="center" style={{ color: "white" }}>
-                Date
+                bill
+              </TableCell>
+              <TableCell
+                align="center"
+                style={{
+                  color: "white",
+                }}
+              >
+                Unit Type
               </TableCell>
             </TableRow>
           </TableHead>
@@ -284,4 +292,4 @@ const Drecords = () => {
   );
 };
 
-export default Drecords;
+export default Brecords;

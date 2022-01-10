@@ -88,7 +88,7 @@ const Main = (props) => {
               <BiDonateBlood
                 style={{
                   fontSize: "1.9rem",
-                  fontWeight: "lighter",
+                  fontWeight: "100 !important",
                   color: "red",
                 }}
               />
@@ -131,24 +131,36 @@ const Main = (props) => {
           <li>
             <Typography variant="h6" color="secondary">
               <Link
-                to="/api/main/orders"
-                style={{
-                  textDecoration: "none",
-                  color: "white",
-                }}
-              >
-                Orders
-              </Link>
-            </Typography>
-          </li>
-          <li>
-            <Typography variant="h6" color="secondary">
-              <Link
                 to="/api/main/eligibility"
                 style={{ textDecoration: "none", color: "white" }}
               >
                 Eligibility Criteria
               </Link>
+            </Typography>
+          </li>
+          <li>
+            <Typography variant="h6" color="secondary">
+              <div
+                style={{ color: "#f9f9f9" }}
+                onMouseEnter={(e) => setDrop(!drop)}
+                className="dropdown"
+              >
+                Records
+                <IoMdArrowDropdown
+                  className="downIcon"
+                  style={{
+                    verticalAlign: "middle",
+                  }}
+                />
+                <div className="dropdown-content">
+                  <Link to="/api/main/donors/records" className="regDon">
+                    Donors Records{" "}
+                  </Link>
+                  <Link className="regHos" to="/api/main/buyers/records">
+                    Buyers Records
+                  </Link>
+                </div>
+              </div>
             </Typography>
           </li>
           <li>
@@ -166,7 +178,9 @@ const Main = (props) => {
                   }}
                 />
                 <div className="dropdown-content">
-                  <div className="regDon">Check Inbox</div>
+                  <Link to="#" className="regDon">
+                    Check Inbox
+                  </Link>
                   <Link className="regHos" to="/api/main/sendMail">
                     Write Mail
                   </Link>
@@ -241,7 +255,12 @@ const Main = (props) => {
                   fontFamily: "Arial",
                 }}
               >
-                Notifications
+                <Link
+                  to="/api/main/store/details"
+                  style={{ color: "#f9f9f9", textDecoration: "none" }}
+                >
+                  Store
+                </Link>
               </li>
             </ul>
           </Card>

@@ -3,8 +3,10 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import TextField from "@material-ui/core/TextField";
-import { Typography } from "@material-ui/core";
+import { Typography, InputAdornment } from "@material-ui/core";
 import { Button } from "@material-ui/core";
+import { VscAccount } from "react-icons/vsc";
+import { RiLockPasswordLine } from "react-icons/ri";
 
 const Logins = () => {
   const history = useHistory();
@@ -94,6 +96,20 @@ const Logins = () => {
             fontFamily: "Arial",
             borderRadius: "10px",
             marginBottom: "1rem",
+            borderBottom: "1px solid gray",
+            borderBottomLeftRadius: "1px",
+            borderBottomRightRadius: "1px",
+          }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <VscAccount
+                  style={{
+                    color: "#f9f9f9",
+                  }}
+                />
+              </InputAdornment>
+            ),
           }}
           onChange={(e) => setUser(e.target.value)}
         />
@@ -107,6 +123,20 @@ const Logins = () => {
             fontFamily: "Arial",
             borderRadius: "10px",
             marginTop: "1rem",
+            borderBottom: "1px solid gray",
+            borderBottomLeftRadius: "1px",
+            borderBottomRightRadius: "1px",
+          }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <RiLockPasswordLine
+                  style={{
+                    color: "#f9f9f9",
+                  }}
+                />
+              </InputAdornment>
+            ),
           }}
           onChange={(e) => setPassword(e.target.value)}
         />

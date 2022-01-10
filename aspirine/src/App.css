@@ -595,6 +595,23 @@ color:rgb(255,255,255) !important
   margin:.9rem 0 .9rem 0;
 }
 
+#storeContainer{
+  background:rgb(30,30,30);
+  color:#f9f9f9;
+  display:grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 40vh;
+  grid-template-areas: "icons"
+                        "data";
+  justify-items: center;
+}
+
+#store-grid-item-1{
+  width:80%;
+  grid-area:icons;
+  border: 1px solid#f9f9f9;
+}
+
 @media (min-width:0px) and (max-width:1024px) {
   body{
     background:rgb(20, 20

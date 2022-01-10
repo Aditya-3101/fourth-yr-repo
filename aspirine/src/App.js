@@ -11,6 +11,8 @@ import Eligible from "./components/eligibility/eligibility";
 import Buyer from "./components/regis/buyer";
 import Donors from "./components/donors/donors.js";
 import Drecords from "./components/records/donorRec";
+import Brecords from "./components/records/buyersRecords";
+import Store from "./components/Store/store";
 import "./App.css";
 
 const App = () => {
@@ -32,6 +34,8 @@ const App = () => {
           <Route path="/api/main/eligibility" exact component={Eligible} />
           <Route path="/api/main/register/buyer/new" exact component={Buyer} />
           <Route path="/api/main/donors/records" exact component={Drecords} />
+          <Route path="/api/main/buyers/records" exact component={Brecords} />
+          <Route path="/api/main/store/details" exact component={Store} />
         </Switch>
       </Router>
     </>
