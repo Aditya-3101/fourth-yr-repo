@@ -1,7 +1,3 @@
-#Shubham waghmare : UI Designer
+This is my fourth year college project.
 
-#Harshad Ghonghade : Data Provider
-
-#Aditya Dhayfule : Front end Designer and backend Designer with Database Analyst
-
-#Avinash Gund : not assigned till now
+This Respositary Contains every single file i used in this project.
