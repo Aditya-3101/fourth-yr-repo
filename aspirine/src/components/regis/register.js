@@ -4,11 +4,8 @@ import { useState, useEffect } from "react";
 import Card from "@material-ui/core/Card";
 import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
-import { FormControl } from "@material-ui/core";
-import { Radio } from "@material-ui/core";
-import { RadioGroup } from "@material-ui/core";
-import { FormControlLabel } from "@material-ui/core";
-import { FormLabel } from "@material-ui/core";
+import { BsTelephone } from "react-icons/bs";
+import { InputAdornment } from "@material-ui/core";
 import { MenuItem } from "@material-ui/core";
 import Headings from "../header/headings";
 
@@ -154,6 +151,13 @@ const Register = () => {
               label="Phone No"
               value={phone}
               className="basic-grid-item-3"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <BsTelephone style={{ color: "#f9f9f9" }} />
+                  </InputAdornment>
+                ),
+              }}
               onChange={(e) => setPhone(e.target.value)}
             />
             <TextField

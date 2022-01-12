@@ -151,6 +151,68 @@ const Tables = (props) => {
       ) : (
         ""
       )}
+      {props.data.HId ? (
+        <>
+          <TableCell align="center" style={{ color: "white" }}>
+            {props.data.HId}
+          </TableCell>
+          <TableCell
+            align="center"
+            style={{
+              color: "white",
+              textTransform: "capitalize",
+            }}
+          >
+            {String(props.data.Hospital_Name)}
+          </TableCell>
+          <TableCell align="center" style={{ color: "white" }}>
+            {props.data.Address}
+          </TableCell>
+          <TableCell align="center" style={{ color: "white" }}>
+            {props.data.phone}
+          </TableCell>
+          <TableCell align="center" style={{ color: "white" }}>
+            {props.data.Mail}
+          </TableCell>
+          <TableCell align="center" style={{ color: "white" }}>
+            {String(props.data.date).slice(0, 10)}
+          </TableCell>
+          <TableCell align="center" style={{ color: "white" }}>
+            {String(props.data.OBgrp).toUpperCase()}
+          </TableCell>
+          <TableCell align="center" style={{ color: "white" }}>
+            {`${props.data.unit}`}
+          </TableCell>
+          <TableCell
+            align="center"
+            style={{
+              color: "white",
+              textTransform: "Capitalize",
+            }}
+          >
+            {String(props.data.TransType)}
+          </TableCell>
+          <TableCell
+            align="center"
+            style={{
+              color: "white",
+              textTransform: "Capitalize",
+            }}
+          >
+            {String(props.data.TransId)}
+          </TableCell>
+          <TableCell align="center" style={{ color: "white" }}>
+            {`Rs.${props.data.bill
+              .toFixed(2)
+              .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}`}
+          </TableCell>
+          <TableCell align="center" style={{ color: "white" }}>
+            {props.data.unit_Type}
+          </TableCell>
+        </>
+      ) : (
+        ""
+      )}
     </>
   );
 };

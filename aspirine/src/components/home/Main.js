@@ -23,7 +23,7 @@ const Main = (props) => {
       });
   }, []);
 
-  if (loading) {
+  if (loading & (user === null)) {
     return (
       <div
         style={{
@@ -159,6 +159,9 @@ const Main = (props) => {
                   <Link className="regHos" to="/api/main/buyers/records">
                     Buyers Records
                   </Link>
+                  <Link className="regHos" to="/api/main/hospitals/records">
+                    Hospital Records
+                  </Link>
                 </div>
               </div>
             </Typography>
@@ -256,10 +259,10 @@ const Main = (props) => {
                 }}
               >
                 <Link
-                  to="/api/main/store/details"
+                  to="/api/logins/Register"
                   style={{ color: "#f9f9f9", textDecoration: "none" }}
                 >
-                  Store
+                  New user?
                 </Link>
               </li>
             </ul>

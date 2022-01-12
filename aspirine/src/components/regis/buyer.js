@@ -106,7 +106,7 @@ const Buyer = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            Id: id,
+            id: id,
             name: name,
             contact: contact,
             date: dateFormat(date, "yyyy-mm-dd"),

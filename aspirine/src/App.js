@@ -13,6 +13,8 @@ import Donors from "./components/donors/donors.js";
 import Drecords from "./components/records/donorRec";
 import Brecords from "./components/records/buyersRecords";
 import Store from "./components/Store/store";
+import Hrecords from "./components/records/hospitalsRecords";
+import Logger from "./components/auth/logger";
 import "./App.css";
 
 const App = () => {
@@ -24,6 +26,7 @@ const App = () => {
       <Router>
         <Switch>
           <Route path="/" exact component={Logins} />
+          <Route path="/api/logins/Register" exact component={Logger} />
           <Route path="/api/main" exact component={Main} />
           <Route path="/api/main/donors" exact component={Donors} />
           <Route path="/api/test_results" exact component={Tests} />
@@ -35,6 +38,11 @@ const App = () => {
           <Route path="/api/main/register/buyer/new" exact component={Buyer} />
           <Route path="/api/main/donors/records" exact component={Drecords} />
           <Route path="/api/main/buyers/records" exact component={Brecords} />
+          <Route
+            path="/api/main/hospitals/records"
+            exact
+            component={Hrecords}
+          />
           <Route path="/api/main/store/details" exact component={Store} />
         </Switch>
       </Router>
