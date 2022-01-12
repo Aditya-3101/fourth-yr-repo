@@ -52,10 +52,8 @@ router.get("/sort", (req, res) => {
 
   if (String(req.query.grp).includes("positive")) {
     grp = String(req.query.grp).replace("positive", "+");
-    console.log(grp);
   } else {
     grp = String(req.query.grp).replace("negative", "-");
-    console.log(grp);
   }
 
   connection.query(
