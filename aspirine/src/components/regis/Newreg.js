@@ -7,8 +7,12 @@ import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { Radio } from "@material-ui/core";
 import { RadioGroup } from "@material-ui/core";
+import { InputAdornment } from "@material-ui/core";
 import { FormControlLabel } from "@material-ui/core";
 import Headings from "../header/headings";
+import { BsTelephone } from "react-icons/bs";
+import { MdLocationOn } from "react-icons/md";
+import { AiOutlineMail } from "react-icons/ai";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
 const NewReg = () => {
@@ -184,6 +188,17 @@ const NewReg = () => {
               label="Mail"
               value={mail}
               className="basic-grid-item-3"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AiOutlineMail
+                      style={{
+                        color: "#f9f9f9",
+                      }}
+                    />
+                  </InputAdornment>
+                ),
+              }}
               onChange={(e) => setMail(e.target.value)}
             />
             <TextField
@@ -195,6 +210,17 @@ const NewReg = () => {
               label="Address"
               value={address}
               className="basic-grid-item-4"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <MdLocationOn
+                      style={{
+                        color: "#f9f9f9",
+                      }}
+                    />
+                  </InputAdornment>
+                ),
+              }}
               onChange={(e) => setAddress(e.target.value)}
             />
             <TextField
@@ -206,6 +232,13 @@ const NewReg = () => {
               onChange={(e) => setPhone(e.target.value)}
               required
               variant="outlined"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <BsTelephone style={{ color: "#f9f9f9" }} />
+                  </InputAdornment>
+                ),
+              }}
             />
             <TextField
               color="secondary"

@@ -9,6 +9,8 @@ import { Radio } from "@material-ui/core";
 import { RadioGroup } from "@material-ui/core";
 import { FormControlLabel } from "@material-ui/core";
 import Headings from "../header/headings";
+import { BsTelephone } from "react-icons/bs";
+import { InputAdornment } from "@material-ui/core";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
 const Buyer = () => {
@@ -169,6 +171,17 @@ const Buyer = () => {
                 onChange={(e) => setContact(e.target.value)}
                 required
                 variant="outlined"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <BsTelephone
+                        style={{
+                          color: "#f9f9f9",
+                        }}
+                      />
+                    </InputAdornment>
+                  ),
+                }}
               />
               <TextField
                 required
