@@ -2,7 +2,7 @@ import React from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import { TextField } from "@material-ui/core";
 import { InputAdornment } from "@material-ui/core";
-import Headings from "./headings";
+import Headings from "../header/headings";
 import emailjs from "emailjs-com";
 import { init } from "emailjs-com";
 init("user_2T6OaIrf40LkLEOKOzaCo");

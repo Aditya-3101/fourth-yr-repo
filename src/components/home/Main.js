@@ -19,12 +19,11 @@ const Main = (props) => {
       .then((result) => {
         setDonors(result);
         setLoading(false);
-        console.log(window.innerWidth);
         setUser(sessionStorage.getItem("user"));
       });
   }, []);
 
-  if (loading) {
+  if (loading & (user === null)) {
     return (
       <div
         style={{
@@ -89,7 +88,7 @@ const Main = (props) => {
               <BiDonateBlood
                 style={{
                   fontSize: "1.9rem",
-                  fontWeight: "lighter",
+                  fontWeight: "100 !important",
                   color: "red",
                 }}
               />
@@ -132,19 +131,6 @@ const Main = (props) => {
           <li>
             <Typography variant="h6" color="secondary">
               <Link
-                to="/api/main/orders"
-                style={{
-                  textDecoration: "none",
-                  color: "white",
-                }}
-              >
-                Orders
-              </Link>
-            </Typography>
-          </li>
-          <li>
-            <Typography variant="h6" color="secondary">
-              <Link
                 to="/api/main/eligibility"
                 style={{ textDecoration: "none", color: "white" }}
               >
@@ -154,15 +140,55 @@ const Main = (props) => {
           </li>
           <li>
             <Typography variant="h6" color="secondary">
-              <Link
-                to="/api/main/sendMail"
-                style={{
-                  color: "White",
-                  textDecoration: "none",
-                }}
+              <div
+                style={{ color: "#f9f9f9" }}
+                onMouseEnter={(e) => setDrop(!drop)}
+                className="dropdown"
               >
-                Configure E-mails
-              </Link>
+                Records
+                <IoMdArrowDropdown
+                  className="downIcon"
+                  style={{
+                    verticalAlign: "middle",
+                  }}
+                />
+                <div className="dropdown-content">
+                  <Link to="/api/main/donors/records" className="regDon">
+                    Donors Records{" "}
+                  </Link>
+                  <Link className="regHos" to="/api/main/buyers/records">
+                    Buyers Records
+                  </Link>
+                  <Link className="regHos" to="/api/main/hospitals/records">
+                    Hospital Records
+                  </Link>
+                </div>
+              </div>
+            </Typography>
+          </li>
+          <li>
+            <Typography variant="h6" color="secondary">
+              <div
+                style={{ color: "#f9f9f9" }}
+                onMouseEnter={(e) => setDrop(!drop)}
+                className="dropdown"
+              >
+                Configure E-mail
+                <IoMdArrowDropdown
+                  className="downIcon"
+                  style={{
+                    verticalAlign: "middle",
+                  }}
+                />
+                <div className="dropdown-content">
+                  <Link to="#" className="regDon">
+                    Check Inbox
+                  </Link>
+                  <Link className="regHos" to="/api/main/sendMail">
+                    Write Mail
+                  </Link>
+                </div>
+              </div>
             </Typography>
           </li>
         </ul>
@@ -178,12 +204,22 @@ const Main = (props) => {
           <Card className="sidebar">
             <ul>
               <li
+                className="sideBarAttr"
                 style={{
                   color: "#f9f9f9",
                   fontFamily: "Arial",
                 }}
               >
-                Donors
+                <Link
+                  style={{
+                    textDecoration: "none",
+                    color: "#f9f9f9",
+                    fontFamily: "Arial",
+                  }}
+                  to="/api/main/donors"
+                >
+                  Donors
+                </Link>
               </li>
               <li className="sideBarAttr">
                 <Link
@@ -222,7 +258,12 @@ const Main = (props) => {
                   fontFamily: "Arial",
                 }}
               >
-                Notifications
+                <Link
+                  to="/api/logins/Register"
+                  style={{ color: "#f9f9f9", textDecoration: "none" }}
+                >
+                  New user?
+                </Link>
               </li>
             </ul>
           </Card>
@@ -315,6 +356,7 @@ const Main = (props) => {
                 <IoMdAdd className="addIcon" />
               </abbr>
             </Link>
+            <button onClick={() => window.print()}>print</button>
           </div>
         </div>
       </div>
